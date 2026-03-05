@@ -17,13 +17,14 @@ This repository contains skill definitions that help AI agents understand when a
 
 ```
 agent-skills/
-└── sosume/
-    └── SKILL.md    # Sosumi skill for fetching Apple documentation
+└── skills/
+    └── sosume/
+        └── SKILL.md    # Sosumi skill for fetching Apple documentation
 ```
 
 ## Skills
 
-### [Sosumi](./sosume/SKILL.md)
+### [Sosumi](./skills/sosume/SKILL.md)
 
 Fetches Apple documentation as Markdown via Sosumi. Essential for:
 
@@ -49,7 +50,7 @@ Each skill is defined in a `SKILL.md` file within its own directory. Skills foll
 
 To add a new skill:
 
-1. Create a new directory under `agent-skills/`
+1. Create a new directory under `skills/`
 2. Add a `SKILL.md` file following the established format
 3. Update this README with a brief description in the Skills section
 
