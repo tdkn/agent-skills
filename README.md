@@ -18,13 +18,13 @@ This repository contains skill definitions that help AI agents understand when a
 ```
 agent-skills/
 └── skills/
-    └── sosume/
+    └── sosumi/
         └── SKILL.md    # Sosumi skill for fetching Apple documentation
 ```
 
 ## Skills
 
-### [Sosumi](./skills/sosume/SKILL.md)
+### [Sosumi](./skills/sosumi/SKILL.md)
 
 Fetches Apple documentation as Markdown via Sosumi. Essential for:
 
