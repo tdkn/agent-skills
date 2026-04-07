@@ -14,8 +14,7 @@ This repository hosts **agent skills**: Markdown skill definitions (`SKILL.md`) 
 agent-skills/
 ├── skills/
 │   └── <skill-name>/
-│       ├── SKILL.md      # primary English skill (required)
-│       └── SKILL.ja.md   # optional Japanese variant
+│       └── SKILL.md      # skill definition (required)
 ├── .github/
 │   └── pull_request_template.md
 ├── README.md
@@ -27,14 +26,14 @@ Draft PR bodies from skills may reference `.private/pr-drafts/` (gitignored or l
 
 ## Adding or changing a skill
 
-1. Add a directory under `skills/` containing `SKILL.md` (and optionally `SKILL.ja.md`).
+1. Add a directory under `skills/` containing `SKILL.md`.
 2. Update **both** `README.md` and `README.ja.md` in the **Skills** section when adding a skill or materially changing one.
 3. Keep front matter valid: `name`, `description`, and body content aligned with [skills.sh](https://skills.sh/) expectations.
 4. Verify that any referenced tools, commands, paths, and workflow steps in the skill still exist and match the intended environment.
 
 ## Conventions
 
-- **Language**: Primary skill text is English in `SKILL.md`; Japanese may live in `SKILL.ja.md` where provided.
+- **Language**: Skill text is English in `SKILL.md`.
 - **Accuracy**: Skills are procedural—commands and file paths must be copy-paste accurate.
 - **Scope**: Prefer one logical change per PR; avoid unrelated drive-by edits.
 
