@@ -18,22 +18,15 @@ This repository contains skill definitions that help AI agents understand when a
 ```
 agent-skills/
 └── skills/
-    └── sosumi/
-        └── SKILL.md    # Sosumi skill for fetching Apple documentation
+    └── pr-description-writer/
+        └── SKILL.md    # PR description drafts from repo templates
 ```
 
 ## Skills
 
-### [Sosumi](./skills/sosumi/SKILL.md)
+### [PR Description Writer](./skills/pr-description-writer/SKILL.md)
 
-Fetches Apple documentation as Markdown via Sosumi. Essential for:
-
-- Apple platform APIs (Swift, SwiftUI, UIKit, AppKit, Foundation, etc.)
-- Human Interface Guidelines
-- WWDC session transcripts
-- External Swift-DocC documentation
-
-**Quick Start**: Replace `developer.apple.com` URLs with `sosumi.ai` to get AI-readable Markdown versions of Apple documentation.
+Produces GitHub pull request bodies that follow the repository’s PR template (or a concise branch summary for reviewers). Drafts are written under `.private/pr-drafts/` and use GitButler (`but`) for workspace state and diffs.
 
 ## Usage
 
