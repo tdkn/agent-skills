@@ -21,7 +21,7 @@ agent-skills/
 
 ## Installation
 
-[skills.sh](https://skills.sh/) の [`skills` CLI](https://skills.sh/docs/cli)（`npx` のみ。グローバルインストール不要）:
+[skills.sh](https://skills.sh/) の [`skills` CLI](https://skills.sh/docs/cli):
 
 ```bash
 npx skills add tdkn/agent-skills
