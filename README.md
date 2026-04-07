@@ -2,16 +2,7 @@
 
 **English** | [日本語](README.ja.md)
 
-A collection of skill definitions for AI coding agents to extend their capabilities with specialized knowledge and workflows.
-
-## Overview
-
-This repository contains skill definitions that help AI agents understand when and how to use specific tools, APIs, and workflows. Each skill provides:
-
-- Clear use cases and triggers
-- Step-by-step workflows
-- API patterns and examples
-- Best practices and troubleshooting tips
+Skill definitions for AI coding agents: triggers, workflows, and conventions per skill.
 
 ## Structure
 
@@ -26,27 +17,23 @@ agent-skills/
 
 ### [PR Drafter](./skills/pr-drafter/SKILL.md)
 
-Produces GitHub pull request bodies that follow the repository’s PR template (or a concise branch summary for reviewers). Drafts are written under `.private/pr-drafts/` and use GitButler (`but`) for workspace state and diffs.
+GitHub PR bodies from the repo’s PR template (or a short branch summary). Writes drafts under `.private/pr-drafts/`; uses GitButler (`but`) for workspace state and diffs.
 
-## Usage
+## Installation
 
-Each skill is defined in a `SKILL.md` file within its own directory. Skills follow a standard format:
+Use the [`skills` CLI](https://skills.sh/docs/cli) from [skills.sh](https://skills.sh/) (`npx` only; no global install):
 
-- **Frontmatter**: Name and description
-- **When to Use**: Clear triggers for when the skill applies
-- **Core Workflow**: Step-by-step process
-- **Examples**: Concrete usage patterns
-- **Best Practices**: Guidelines for optimal results
-- **Troubleshooting**: Common issues and solutions
+```bash
+npx skills add tdkn/agent-skills
+```
+
+`-l` lists skills without installing; `-g` installs user-wide; `--agent` targets specific agents. See the [CLI docs](https://skills.sh/docs/cli). To disable telemetry: `DISABLE_TELEMETRY=1`.
 
 ## Contributing
 
-To add a new skill:
-
-1. Create a new directory under `skills/`
-2. Add a `SKILL.md` file following the established format
-3. Update this README with a brief description in the Skills section
+1. Add a directory under `skills/` with a `SKILL.md`
+2. Document it briefly in **Skills** above
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+[MIT License](LICENSE)
