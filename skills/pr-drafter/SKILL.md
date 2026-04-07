@@ -44,11 +44,11 @@ but diff --no-tui <branch-id>
 
 ### 5. Draft hand off
 
-Fill placeholders from commits and diffs; apply **Rules for the PR body**. Map “scope”/“type” checklists from paths and commits; only tick verification items that truly apply.
+Fill placeholders from commits and diffs; apply **Rules for the PR body**. Only tick checklist items that truly apply.
 
-**Persist** to **`.private/pr-drafts/<filename>.md`** (repo root; create the folder if needed). **Filename**: safe stem from **PR head** (`/` → `-`); on collision or empty, prefix with a short ISO date (e.g. `2026-04-06-<stem>.md`).
+Save to **`.private/pr-drafts/YYYY-MM-DD-HHMM-<stem>.md`** (mkdir if needed). `<stem>` = PR head slug (`/` → `-`). Collisions: append `-2`, `-3`, … before `.md`.
 
-**Write** the full body, tell the user the path, and give a **short summary or paste-ready block** for GitHub.
+Tell the user the path and output a paste-ready PR body.
 
 ## Rules for the PR body
 
