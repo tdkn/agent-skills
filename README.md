@@ -21,13 +21,11 @@ GitHub PR bodies from the repo’s PR template (or a short branch summary). Writ
 
 ## Installation
 
-Use the [`skills` CLI](https://skills.sh/docs/cli) from [skills.sh](https://skills.sh/) (`npx` only; no global install):
+Use the [`skills` CLI](https://skills.sh/docs/cli) from [skills.sh](https://skills.sh/):
 
 ```bash
 npx skills add tdkn/agent-skills
 ```
-
-`-l` lists skills without installing; `-g` installs user-wide; `--agent` targets specific agents. See the [CLI docs](https://skills.sh/docs/cli). To disable telemetry: `DISABLE_TELEMETRY=1`.
 
 ## Contributing
 
