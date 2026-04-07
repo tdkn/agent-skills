@@ -27,7 +27,7 @@ Use **`but`** for workspace state and diffs. **Do not** mutate with `git`; use r
 
 ### 2. Confirm PR head
 
-Ask which **PR head** branch to draft against; do not guess. Cross-check with `but status -f --json` (branches, stacks, CLI IDs). If it disagrees with the user, **prefer the user**.
+Ask which **PR head** branch to draft against; do not guess. Cross-check with `but status -f` (branches, stacks). If it disagrees with the user, **prefer the user**.
 
 ### 3. Resolve template
 
@@ -35,20 +35,20 @@ Resolve explicitly (no fixed layout): **default** `.github/pull_request_template
 
 ### 4. Gather facts
 
-Get the head branch **CLI ID** from `but status -f --json` (re-run if IDs may have changed). For **`but branch show`**, use **`--files --json`**; do **not** confuse with `but status -f`. Do **not** use **`but branch show --ai`** for drafting; use commits and diffs only.
+Collect commits and diffs for the PR head branch.
 
 ```bash
-but branch show --files --json <branch-id>
-but diff --no-tui <branch-id>
+but branch show --files <branch-id>  # commits and changed files
+but diff --no-tui <branch-id>        # full diff
 ```
 
-### 5. Draft hand off
+### 5. Write the PR body
 
-Fill placeholders from commits and diffs; apply **Rules for the PR body**. Only tick checklist items that truly apply.
+Using the template from step 3 and the facts from step 4, fill every placeholder. Map scope and type from file paths and commit messages. Apply **Rules for the PR body**. Only tick checklist items you actually verified.
 
 Save to **`.private/pr-drafts/YYYY-MM-DD-HHMM-<stem>.md`** (mkdir if needed). `<stem>` = PR head slug (`/` → `-`). Collisions: append `-2`, `-3`, … before `.md`.
 
-Tell the user the path and output a paste-ready PR body.
+Tell the user the saved path and output a paste-ready PR body.
 
 ## Rules for the PR body
 
