@@ -9,59 +9,53 @@ description: >-
 
 # PR Drafter
 
-Build PR description Markdown from **whatever PR template the repo actually uses** (headings, checklist rows, and HTML comment instructions), then **write it to a file under `.private/pr-drafts/`**—not only as chat output.
-
-Follow the **workflow** in order. Use **rules for the PR body** while drafting. Skim **common mistakes** before finishing.
+Build PR description Markdown from **whatever PR template the repo actually uses** (headings, checklists, HTML comment instructions), then **write it to `.private/pr-drafts/`**, not only in chat. Follow the **workflow**, apply **Rules for the PR body**, skim **Common mistakes**.
 
 ## Workflow
 
-1. **Confirm merge base and PR head** — Ask the user to name **merge base** (e.g. `main`) and **PR head** (the branch that contains the PR changes). Do not guess. Cross-check with:
+### 1. Load `but` skill
+
+GitButler’s CLI and its agent skill are both named **`but`**; resolve the skill by that name.
+
+**MANDATORY**: When available, load and follow the **`but`** skill. If it is missing or you need syntax, use **`but --help`** and **`but <subcommand> --help`**.
 
 ```bash
-but status -fv  # current branches, stacks, and CLI IDs
+but --help
 ```
 
-If that output disagrees with the user, **prefer the user** (workspace vs GitHub head can differ). Do not state base/head relationships as fact beyond what the user confirmed; GitButler’s internal base may differ from GitHub’s.
+Use **`but`** for workspace state and diffs. **Do not** mutate with `git`; use read-only `git` only to reconcile diff scope with the user’s intent when **`but`** is not enough.
 
-2. **Use GitButler (`but`)** — Load the GitButler (but) agent skill when your environment exposes it and follow it. If it does not load:
+### 2. Confirm PR head
+
+Ask which **PR head** branch to draft against; do not guess. Cross-check with `but status -f --json` (branches, stacks, CLI IDs). If it disagrees with the user, **prefer the user**.
+
+### 3. Resolve template
+
+Resolve explicitly (no fixed layout): **default** `.github/pull_request_template.md`; **else** `.github/PULL_REQUEST_TEMPLATE/*.md`, `docs/`, or a user path; **if none**, ask for path or expected sections. Read end-to-end. **HTML comments** are instructions; if they conflict with generic rules below, **the project wins**.
+
+### 4. Gather facts
+
+Get the head branch **CLI ID** from `but status -f --json` (re-run if IDs may have changed). For **`but branch show`**, use **`--files --json`**; do **not** confuse with `but status -f`. Do **not** use **`but branch show --ai`** for drafting; use commits and diffs only.
 
 ```bash
-but --help  # discover subcommands and flags
+but branch show --files --json <branch-id>
+but diff --no-tui <branch-id>
 ```
 
-Use `but` for workspace state and diffs. Do **not** use `git` to mutate history or the working tree. Use read-only `git` only if you must reconcile **base..head** with the user’s intent and `but` alone is not enough—avoid it by default.
+### 5. Draft hand off
 
-3. **Resolve and read the PR template** — Templates differ by project; resolve explicitly—do not assume a fixed layout.
-   - **Default**: `.github/pull_request_template.md` at the repo root (common GitHub convention).
-   - **Alternatives**: `.github/PULL_REQUEST_TEMPLATE/*.md`, `docs/` variants, or a path the user names. If multiple exist, prefer the one the project documents or ask the user.
-   - **None found**: ask for the template path or the sections the team expects, then follow that.
+Fill placeholders from commits and diffs; apply **Rules for the PR body**. Map “scope”/“type” checklists from paths and commits; only tick verification items that truly apply.
 
-   Read the file end-to-end. Treat **HTML comments** as author instructions: follow them even when they conflict with generic rules below (project wins).
+**Persist** to **`.private/pr-drafts/<filename>.md`** (repo root; create the folder if needed). **Filename**: safe stem from **PR head** (`/` → `-`); on collision or empty, prefix with a short ISO date (e.g. `2026-04-06-<stem>.md`).
 
-4. **Gather facts** — Resolve the head branch’s **CLI ID** from `but status` each time (IDs change). Typical order:
-
-```bash
-but status -fv  # branch CLI IDs and apply state
-but branch show <branch-id> -f  # commits ahead of base and per-commit file changes
-but diff <branch-id>  # full branch diff when needed (use --no-tui in automation if TUI opens)
-but branch show <branch-id> --ai  # optional draft summary—verify against commits/diff before using
-```
-
-5. **Draft, persist, and hand off** — Fill placeholders using commits and diffs. Apply **Rules for the PR body** below. Map changes to any “scope” or “type” checklists using paths and commit messages; only check “what we verified” items that actually apply.
-
-   **Persist**:
-   - Path: **`.private/pr-drafts/<filename>.md`** (repo root–relative).
-   - Create **`.private/pr-drafts/`** if it does not exist.
-   - **Filename**: filesystem-safe stem from the confirmed **PR head** branch (e.g. replace `/` with `-`); if that collides or is empty, use a short ISO date prefix (e.g. `2026-04-06-<stem>.md`).
-
-   **Write** the file with the full Markdown content, tell the user the path, and give a **short chat summary or copy-paste block** of the same body so they can drop it into GitHub without opening the file.
+**Write** the full body, tell the user the path, and give a **short summary or paste-ready block** for GitHub.
 
 ## Rules for the PR body
 
 - **Heading fidelity**: Keep the template’s **`##` / `###` titles and their order** exactly as written. Do not translate, rename, or add sections the template does not define.
 - **Checklists**: If the template includes `- [ ]` lines, **keep every row** unless the template explicitly tells you to drop rows or sections. Leave items **unchecked** when you did not run or verify them; do not tick boxes to “look done.”
-- **Placeholders**: Replace issue/PR placeholders (e.g. incomplete `Closes #`, empty `Fixes #`) with a real reference when the user confirms one; otherwise **remove the broken line** so GitHub keywords stay valid.
-- **Optional sections**: Some templates say to **delete whole sections** when not applicable (e.g. screenshots). Others want the heading left with “N/A.” **Follow the template comments**, not a global rule.
+- **Placeholders**: Replace issue/PR placeholders such as incomplete `Closes #` or empty `Fixes #` with a real reference when the user confirms one; otherwise **remove the broken line** so GitHub keywords stay valid.
+- **Optional sections**: Some templates say to **delete whole sections** when not applicable, such as screenshots. Others want the heading left with “N/A.” **Follow the template comments**, not a global rule.
 - **Deliverable cleanliness**: Strip HTML comments from the **pasted PR body** when they are only agent notes and would clutter the review; keep the structure those comments required.
 
 ## Common mistakes
@@ -73,5 +67,5 @@ but branch show <branch-id> --ai  # optional draft summary—verify against comm
 | Removing checklist lines to shorten the PR | Violates explicit template rules; reviewers lose signal. |
 | Checking verification boxes without evidence | Misleading for CI/review; only check what you or the user confirmed. |
 | Copying a summary from another repo's template shape | Wrong sections, wrong language, or missing required blocks. |
-| Trusting tool "base" without user confirmation | GitButler/GitHub merge bases can differ; wrong "what changed" narrative. |
+| Asserting a base (“vs `main`”, etc.) in the body that doesn’t match the PR’s actual diff scope | Reviewers see GitHub’s diff; the narrative drifts from what they review. |
 | Leaving `Closes #` or similar with no number | Invalid or confusing GitHub linking. |
