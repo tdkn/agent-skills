@@ -1,5 +1,5 @@
 ---
-name: pr-description-writer
+name: pr-drafter
 description: >-
   Use this skill when the user wants a GitHub pull request body that follows
   the repository PR template, or a concise summary of branch changes for
@@ -7,7 +7,7 @@ description: >-
   branch" even when they do not mention templates or GitHub explicitly.
 ---
 
-# PR Description Writer
+# PR Drafter
 
 Build PR description Markdown from **whatever PR template the repo actually uses** (headings, checklist rows, and HTML comment instructions), then **write it to a file under `.private/pr-drafts/`**—not only as chat output.
 
