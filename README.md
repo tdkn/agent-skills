@@ -18,13 +18,13 @@ This repository contains skill definitions that help AI agents understand when a
 ```
 agent-skills/
 └── skills/
-    └── pr-description-writer/
+    └── pr-drafter/
         └── SKILL.md    # PR description drafts from repo templates
 ```
 
 ## Skills
 
-### [PR Description Writer](./skills/pr-description-writer/SKILL.md)
+### [PR Drafter](./skills/pr-drafter/SKILL.md)
 
 Produces GitHub pull request bodies that follow the repository’s PR template (or a concise branch summary for reviewers). Drafts are written under `.private/pr-drafts/` and use GitButler (`but`) for workspace state and diffs.
 
