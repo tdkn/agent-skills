@@ -19,7 +19,7 @@ agent-skills/
 
 ### [PR Drafter](./skills/pr-drafter/SKILL.md)
 
-GitHub PR bodies from the repo’s PR template (or a short branch summary). Writes drafts under `.private/pr-drafts/`; uses GitButler (`but`) for workspace state and diffs.
+Reviewer-ready GitHub PR bodies from the repo’s PR template (or a short branch summary). Writes drafts under `.private/pr-drafts/`; uses GitButler (`but`) for workspace state and diffs, and emphasizes reviewer context, risk, and validation.
 
 ### [Sibling Repo](./skills/sibling-repo/SKILL.md)
 

@@ -19,7 +19,7 @@ agent-skills/
 
 ### [PR Drafter](./skills/pr-drafter/SKILL.md)
 
-リポジトリの PR テンプレートに沿った GitHub の PR 本文（または短いブランチ要約）。下書きは `.private/pr-drafts/` に出力。ワークスペースと差分は GitButler（`but`）を使用。
+リポジトリの PR テンプレートに沿った、レビューワー向けの GitHub PR 本文（または短いブランチ要約）。下書きは `.private/pr-drafts/` に出力。ワークスペースと差分は GitButler（`but`）を使用し、レビュー文脈・リスク・検証内容を重視します。
 
 ### [Sibling Repo](./skills/sibling-repo/SKILL.md)
 
