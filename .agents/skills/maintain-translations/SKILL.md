@@ -7,14 +7,14 @@ description: Maintain this repository's English/Japanese documentation pairs and
 
 ## Overview
 
-Keep Japanese translation files and English source documentation aligned as part of the same change. Treat `*.ja.md` updates as required deliverables, not optional cleanup.
+Keep Japanese translation files and English source documentation aligned as part of the same change. Treat public `*.ja.md` updates as required deliverables, not optional cleanup.
 
 ## Translation Contract
 
 - Maintain information parity between English docs and their Japanese counterparts.
 - Preserve the target document's established structure and tone when it intentionally differs from the English source.
 - Translate meaning, links, command names, paths, and checklist semantics accurately; do not add placeholder translation text.
-- Keep `skills/<skill-name>/SKILL.md` as the English source of truth. Do not create new `SKILL.ja.md` files by default, but if an existing `SKILL.ja.md` counterpart is present, keep it aligned when the English skill changes.
+- Keep `skills/<skill-name>/SKILL.md` as the English source of truth. `SKILL.ja.md` files are ignored local verification aids, not published skill files; do not create them by default or treat them as required PR deliverables.
 - Treat `.agents/skills/` as local agent guidance. Do not add local-only skills to the public README skill catalog unless the user asks.
 
 ## Workflow
@@ -28,7 +28,7 @@ Keep Japanese translation files and English source documentation aligned as part
    - If `README.md` changes, update `README.ja.md` in the same turn.
    - If `README.ja.md` changes, inspect `README.md` and keep the two documents semantically aligned.
    - If a public skill is added, renamed, removed, or materially changed under `skills/`, update both README skill listings.
-   - If a changed public skill already has `SKILL.ja.md`, update that translation as part of the same change.
+   - If a changed public skill already has a local `SKILL.ja.md`, use it as local verification context when helpful, but do not treat it as a published translation or required PR artifact.
    - If another Markdown file has a `*.ja.md` counterpart, update both files unless the change is language-specific.
    - If a Markdown source has no Japanese counterpart, decide whether a counterpart should exist based on the document's public/user-facing role.
 
@@ -47,14 +47,14 @@ Keep Japanese translation files and English source documentation aligned as part
 ## Repository-Specific Rules
 
 - Public catalog source: `skills/<skill-name>/SKILL.md`
-- Optional public skill translation: `skills/<skill-name>/SKILL.ja.md` when already present
+- Local skill verification aid: `skills/<skill-name>/SKILL.ja.md` when already present and ignored by git
 - Published English catalog: `README.md`
 - Published Japanese catalog: `README.ja.md`
 - Local agent-only skills: `.agents/skills/<skill-name>/SKILL.md`
 
 When changing a public skill under `skills/`, do not stop after editing `README.md`. Update `README.ja.md` in the same change and use Japanese descriptions that reflect the updated behavior.
 
-If a public skill has an existing `SKILL.ja.md`, update it even if the file is ignored or absent from `git status`; inspect files directly with `rg --files -g '*.ja.md'`.
+If a public skill has an existing `SKILL.ja.md`, remember that it is local-only and ignored by git. Inspect it directly with `rg --files -g '*.ja.md'` when local Japanese wording helps, but do not rely on `git status` or PR diffs to show it.
 
 When changing local repo guidance under `.agents/skills/`, keep the skill body in English and skip README catalog updates unless the user explicitly wants the local guidance documented publicly.
 
