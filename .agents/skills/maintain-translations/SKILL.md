@@ -1,6 +1,8 @@
 ---
 name: maintain-translations
 description: Maintain this repository's English/Japanese documentation pairs and translation-sensitive catalog entries. Use when working in tdkn/agent-skills on README.md, README.ja.md, any *.md file with a *.ja.md counterpart, adding or materially changing skills under skills/, editing AGENTS.md or public docs, or when the user mentions ja.md, Japanese docs, translations, localization, or mirrored documentation.
+metadata:
+  internal: true
 ---
 
 # Maintain Translations
