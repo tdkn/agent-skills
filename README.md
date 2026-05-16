@@ -4,26 +4,12 @@
 
 Skill definitions for AI coding agents: triggers, workflows, and conventions per skill.
 
-## Structure
-
-```
-agent-skills/
-└── skills/
-    ├── pr-drafter/
-    │   └── SKILL.md    # PR description drafts from repo templates
-    └── sibling-repo/
-        └── SKILL.md    # Read-only context from neighboring local repos
-```
-
 ## Skills
 
-### [PR Drafter](./skills/pr-drafter/SKILL.md)
-
-Reviewer-ready GitHub PR bodies from the repo’s PR template (or a short branch summary). Writes drafts under `.private/pr-drafts/`; uses GitButler (`but`) for workspace state and diffs, and emphasizes reviewer context, risk, and validation.
-
-### [Sibling Repo](./skills/sibling-repo/SKILL.md)
-
-Read neighboring local repositories beside the current git repo as read-only context for cross-repo contracts, shared types, APIs, schemas, SDKs, generated clients, env vars, feature flags, and behavior alignment.
+| Skill name | Description |
+| --- | --- |
+| [PR Drafter](./skills/pr-drafter/SKILL.md) | Reviewer-ready GitHub PR bodies from the repo’s PR template (or a short branch summary). Writes drafts under `.private/pr-drafts/`; uses GitButler (`but`) for workspace state and diffs, and emphasizes reviewer context, risk, and validation. |
+| [Sibling Repo](./skills/sibling-repo/SKILL.md) | Read neighboring local repositories beside the current git repo as read-only context for cross-repo contracts, shared types, APIs, schemas, SDKs, generated clients, env vars, feature flags, and behavior alignment. |
 
 ## Installation
 
