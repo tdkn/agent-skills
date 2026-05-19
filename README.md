@@ -9,7 +9,7 @@ Skill definitions for AI coding agents: triggers, workflows, and conventions per
 | Skill | Description |
 | --- | --- |
 | [PR Drafter](./skills/pr-drafter/SKILL.md) | Drafts reviewer-ready GitHub PR bodies from the repo template or branch summary. |
-| [Sibling Repo](./skills/sibling-repo/SKILL.md) | Uses neighboring local repos as read-only context for cross-repo contracts and behavior. |
+| [Other Repo](./skills/other-repo/SKILL.md) | Uses other local repos as read-only context for cross-repo contracts and behavior. |
 
 ## Installation
 

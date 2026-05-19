@@ -1,16 +1,16 @@
 ---
-name: sibling-repo
+name: other-repo
 description: >
-  Read neighboring local repositories beside the current git repo as read-only
+  Read other local repositories beside the current git repo as read-only
   context for cross-repo work. Use for shared types, APIs, schemas, SDKs,
   generated clients, env vars, feature flags, and contract alignment across
   repos. Trigger when another local repo may exist at ../repo-name. Do not use
   for remote-only or current-repo-only tasks.
 ---
 
-# Sibling Repo
+# Other Repo
 
-Treat sibling repos as read-only extensions of the current workspace.
+Treat other local repos as read-only extensions of the current workspace.
 
 ## Workspace
 
@@ -25,13 +25,13 @@ find "$parent_dir" -mindepth 1 -maxdepth 1 -type d \
 
 Stay inside `"$parent_dir"` only.
 
-## Resolve a sibling
+## Resolve a target repo
 
 ```zsh
 target="$parent_dir/TARGET_REPO"
 
 [ -d "$target" ] || {
-  echo "Missing sibling repo: $target" >&2
+  echo "Missing target repo: $target" >&2
   exit 1
 }
 
@@ -80,8 +80,8 @@ rg -n "export\s+(type|interface|class|function|const)\s+NAME\b" "$target"
 
 - Read-only by default.
 - Do not edit, install, build, test, fetch, pull, switch branches, or commit in
-  siblings unless explicitly requested.
+  other repos unless explicitly requested.
 - Avoid secrets and real `.env` files.
 - Prefer `.env.example`, schemas, and docs.
 - Report evidence with paths and line numbers.
-- If no matching sibling exists, say what was checked.
+- If no matching repo exists, say what was checked.
